@@ -36,8 +36,8 @@ export function SpeakerCard({ speaker }: SpeakerCardProps) {
           className="mb-4 aspect-square w-full rounded-[0.7rem_2rem_0.7rem_0.7rem] border border-(--event-base-text) object-cover"
           />
         ) : null}
-        <h3 className="text-xl font-semibold">{speaker.name}</h3>
-        <p className="mt-1 text-sm text-(--event-base-text)/60">
+        <h3 className="text-xl font-semibold text-center">{speaker.name}</h3>
+        <p className="mt-1 text-sm text-(--event-base-text)/60 text-center">
           {[speaker.title, speaker.company].filter(Boolean).join(", ")}
         </p>
         <div className="flex items-center justify-between gap-3 mt-3 ">
