@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { DM_Mono, Space_Grotesk } from "next/font/google";
+import { DM_Mono, DM_Serif_Display, Space_Grotesk } from "next/font/google";
 import "../globals.css";
 
 import { EventShell } from "@/components/event-shell";
@@ -21,6 +21,12 @@ const dmMono = DM_Mono({
   variable: "--font-dm-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -68,7 +74,7 @@ export default async function EventLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmMono.variable} ${spaceGrotesk.className} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${dmMono.variable} ${dmSerifDisplay.variable} ${spaceGrotesk.className} h-full antialiased`}
     >
       <body style={eventVars} className="min-h-full flex flex-col">
         {preview && <PreviewBanner />}

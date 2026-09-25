@@ -12,6 +12,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-space-grotesk);
   --font-mono: monospace;
+  --font-display: var(--font-dm-serif-display);
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
