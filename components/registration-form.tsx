@@ -191,7 +191,7 @@ export function RegistrationForm({
           type="submit"
           disabled={isPending}
           size="lg"
-          className="min-h-12 min-w-48 rounded-(--event-border-radius) bg-(--event-primary-bg) text-base font-semibold text-(--event-primary-text) hover:bg-(--event-primary-bg)/85"
+          className="min-h-12 min-w-48 rounded-(--event-border-radius) bg-(--event-primary-bg) text-base font-semibold text-(--event-primary-text) hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-(--event-primary-bg)/85 active:translate-y-0 active:scale-100"
         >
           {isPending
             ? "Submitting..."
