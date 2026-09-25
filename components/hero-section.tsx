@@ -48,19 +48,19 @@ export function HeroSection({ event, formActive }: HeroSectionProps) {
       )}
       <Container
         id="hero"
-        className="grid min-h-[76vh] max-w-7xl content-center py-24 md:min-h-[84vh] md:py-32 lg:pl-20"
+        className="grid min-h-[76vh] max-w-7xl content-center justify-items-center py-24 md:min-h-[84vh] md:py-32"
       >
-        <div className="area-z-hero-copy max-w-6xl text-left">
-          <p className="mb-8 border-l-[3px] border-[#f1bc42] pl-4 font-mono text-sm font-medium uppercase tracking-[0.24em] text-[#f1bc42]">
+        <div className="area-z-hero-copy max-w-6xl text-center">
+          <p className="mb-8 border-l-[3px] border-[#f1bc42] pl-4 font-mono text-sm font-medium uppercase tracking-[0.24em] text-[#f1bc42] mx-auto w-fit">
             {text(content.companyName, event.type ?? "Event")}
           </p>
-          <h1 className="area-z-display max-w-[10ch] font-display text-[clamp(5.5rem,10vw,11rem)] leading-[0.82] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.42)]">
+          <h1 className="area-z-display max-w-[10ch] mx-auto font-display text-[clamp(5.5rem,10vw,11rem)] leading-[0.82] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.42)]">
             {text(event.name, event.name)}
           </h1>
           <div className="text-[#f1bc42]">
             <EventDetails event={event} />
           </div>
-          <p className="max-w-2xl text-lg leading-relaxed text-white/95 sm:text-xl md:text-2xl">
+          <p className="max-w-2xl mx-auto text-lg leading-relaxed text-white/95 sm:text-xl md:text-2xl">
             {text(content.heroText)}
           </p>
           {formActive &&
