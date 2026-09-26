@@ -45,10 +45,11 @@ export function Header({
   return (
     <div className="relative z-40 h-16">
       <header
+        style={isFloating ? { top: "calc(1rem + var(--banner-h, 0px))" } : undefined}
         className={cn(
           "z-40 flex h-16 items-center justify-between gap-4 px-5 transition-[width,transform,top,border-radius,box-shadow] duration-200 sm:px-7",
           isFloating
-            ? "fixed top-4 left-1/2 w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 rounded-[1rem] border border-(--event-base-text)/15 bg-(--event-base-bg)/95 shadow-[0_12px_30px_rgba(21,45,59,0.2)] backdrop-blur md:top-5 md:w-[calc(100%-2.5rem)]"
+            ? "fixed left-1/2 w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 rounded-[1rem] border border-(--event-base-text)/15 bg-(--event-base-bg)/95 shadow-[0_12px_30px_rgba(21,45,59,0.2)] backdrop-blur md:w-[calc(100%-2.5rem)]"
             : "absolute inset-x-0 top-0 border-b border-(--event-base-text)/15 bg-(--event-base-bg)/90 backdrop-blur",
         )}
       >

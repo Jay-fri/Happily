@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { DM_Mono, DM_Serif_Display, Space_Grotesk } from "next/font/google";
 import "../globals.css";
 
+import { BannerObserver } from "@/components/banner-observer";
 import { EventShell } from "@/components/event-shell";
 import { styleValue } from "@/components/helpers";
 import { PreviewBanner } from "@/components/preview-banner";
@@ -77,7 +78,10 @@ export default async function EventLayout({
       className={`${spaceGrotesk.variable} ${dmMono.variable} ${dmSerifDisplay.variable} ${spaceGrotesk.className} h-full antialiased`}
     >
       <body style={eventVars} className="min-h-full flex flex-col">
-        {preview && <PreviewBanner />}
+        <div id="top-banners">
+          {preview && <PreviewBanner />}
+        </div>
+        <BannerObserver />
         {analyticsId && (
           <script
             defer
