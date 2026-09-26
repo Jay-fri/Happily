@@ -60,7 +60,7 @@ export function HeroSection({ event, formActive }: HeroSectionProps) {
           <div className="text-[#f1bc42]">
             <EventDetails event={event} />
           </div>
-          <p className="max-w-2xl mx-auto text-lg leading-relaxed text-white/95 sm:text-xl md:text-2xl">
+          <p className="max-w-4xl mx-auto text-lg leading-relaxed text-white/95 sm:text-xl md:text-2xl">
             {text(content.heroText)}
           </p>
           {formActive &&
@@ -69,7 +69,7 @@ export function HeroSection({ event, formActive }: HeroSectionProps) {
             <Button
               asChild
               size="lg"
-              className="mt-5 min-h-12 rounded-full bg-(--event-accent-bg) px-6 py-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-(--event-accent-text) shadow-[4px_4px_0_var(--event-base-text)] hover:bg-(--event-accent-bg)/85"
+              className="mt-5 min-h-12 rounded-[0.4rem] border-2 border-(--event-accent-bg) bg-(--event-accent-bg) px-7 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-(--event-accent-text) shadow-[4px_4px_0_var(--event-base-text)] hover:bg-(--event-accent-bg)/85 hover:shadow-[5px_6px_0_var(--event-base-text)]"
             >
               <ScrollLink href="#register">
                 {text(

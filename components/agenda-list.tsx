@@ -221,7 +221,7 @@ export function AgendaList({
       <Tabs defaultValue={days[0][0]}>
         <TabsList
           variant="line"
-          className="h-18 py-9 w-full justify-start overflow-x-auto">
+          className="h-18 py-9 w-full justify-start overflow-x-auto overflow-y-hidden">
           {days.map(([dayLabel]) => (
             <TabsTrigger
               key={dayLabel}

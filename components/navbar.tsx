@@ -25,7 +25,7 @@ export function Navbar({ nav, ctaText, ctaHref }: NavbarProps) {
       {ctaHref && ctaText ? (
         <ScrollLink
           href={ctaHref}
-          className="rounded-full bg-(--event-primary-bg) px-4 py-2 font-semibold text-(--event-primary-text) shadow-[3px_3px_0_var(--event-base-text)] transition-transform hover:-translate-y-0.5"
+          className="rounded-[0.35rem] border-2 border-(--event-primary-bg) bg-(--event-primary-bg) px-4 py-2 font-bold text-(--event-primary-text) shadow-[3px_3px_0_var(--event-base-text)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_var(--event-base-text)] active:translate-y-px active:shadow-[1px_1px_0_var(--event-base-text)]"
         >
           {ctaText}
         </ScrollLink>
