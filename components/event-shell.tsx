@@ -37,12 +37,16 @@ export function EventShell({ eventData, children, preview }: EventShellProps) {
   return (
     <div className="area-z-site flex min-h-screen flex-col bg-(--event-base-bg) text-(--event-base-text)">
       {preview && <PreviewBanner />}
+      <div className="flex items-center justify-center gap-2 bg-[#e5533d] px-4 py-2 text-center font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#fff8e9]">
+        <span>🎟</span>
+        <span>Early bird tickets available — limited spots left.</span>
+        <a href="/#register" className="underline underline-offset-2 hover:opacity-80">Register now</a>
+      </div>
       <Header
         logo={event.logo_url}
         logoAlt={`${event.name} logo`}
         nav={nav}
         hideNavigation={event.display_settings.hideNavigation ?? false}
-        hasBanner={preview}
         ctaText={
           showCta ? text(buttonLinks!.heroCTA.text, "Register") : undefined
         }

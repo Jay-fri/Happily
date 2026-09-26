@@ -17,7 +17,6 @@ type HeaderProps = {
   ctaText?: string;
   ctaHref?: string;
   hideNavigation?: boolean;
-  hasBanner?: boolean;
 };
 
 export function Header({
@@ -27,18 +26,14 @@ export function Header({
   ctaText,
   ctaHref,
   hideNavigation = false,
-  hasBanner = false,
 }: HeaderProps) {
-  const bannerOffset = hasBanner ? 40 : 0;
   const [isFloating, setIsFloating] = useState(false);
 
   useEffect(() => {
-    const updateHeaderPosition = () => setIsFloating(window.scrollY > 32);
-
-    updateHeaderPosition();
-    window.addEventListener("scroll", updateHeaderPosition, { passive: true });
-
-    return () => window.removeEventListener("scroll", updateHeaderPosition);
+    const onScroll = () => setIsFloating(window.scrollY > 32);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   if (hideNavigation) {
@@ -46,41 +41,20 @@ export function Header({
   }
 
   return (
-    <div>
-      {/* 
-        The header is always fixed + centered. The "flush" vs "floating" look
-        is driven entirely by animatable properties (width, top, border-radius,
-        scale, shadow, padding) so we never snap between position modes.
-      */}
+    <div
+      className={cn(
+        "sticky top-0 z-40 flex justify-center pointer-events-none transition-[padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        isFloating ? "pt-3" : "pt-0",
+      )}>
       <header
-        style={{
-          top: isFloating
-            ? `calc(1rem + ${bannerOffset}px)`
-            : `${bannerOffset}px`,
-        }}
         className={cn(
-          // ── base (always applied) ──
-          "fixed left-1/2 z-40 flex h-16 -translate-x-1/2 items-center justify-between gap-4 border bg-(--event-base-bg)/95 backdrop-blur",
-          // ── smooth transition on every visual property ──
-          "transition-[width,max-width,top,border-radius,border-color,box-shadow,transform,padding,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-          // ── state fork ──
+          "pointer-events-auto flex h-14 items-center justify-between gap-4 px-5 sm:px-7",
+          "transition-[width,border-radius,background-color,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           isFloating
-            ? [
-                "w-[calc(100%-1.5rem)] max-w-6xl rounded-[1rem] px-5 sm:px-7",
-                "border-(--event-base-text)/15",
-                "shadow-[0_12px_30px_rgba(21,45,59,0.2)]",
-                "scale-100",
-                "md:w-[calc(100%-2.5rem)]",
-              ]
-            : [
-                // Flush: full-width, square corners, no shadow, slightly larger scale
-                "w-full max-w-none rounded-none px-5 sm:px-7",
-                "border-transparent border-b-[color:var(--event-base-text)]/15",
-                "shadow-none",
-                "scale-[1.005]",
-              ],
+            ? "w-[calc(100%-2rem)] max-w-4xl rounded-lg border border-(--event-base-text)/15 bg-(--event-base-bg)/95 shadow-[0_4px_24px_rgba(23,63,82,0.12)] backdrop-blur"
+            : "w-full rounded-none border-b border-(--event-base-text)/15 bg-(--event-base-bg)/95 backdrop-blur",
         )}>
-        <div className="relative z-60 flex w-full max-w-32 items-center sm:max-w-40">
+        <div className="flex w-full max-w-32 items-center sm:max-w-40">
           {logo && (
             <Link href="/">
               <Image
@@ -88,7 +62,7 @@ export function Header({
                 alt={logoAlt}
                 width={250}
                 height={100}
-                className="relative z-60 max-h-10 w-full object-contain object-left"
+                className="max-h-10 w-full object-contain object-left"
                 draggable={false}
               />
             </Link>
