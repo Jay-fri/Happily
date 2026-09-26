@@ -17,6 +17,7 @@ type HeaderProps = {
   ctaText?: string;
   ctaHref?: string;
   hideNavigation?: boolean;
+  hasBanner?: boolean;
 };
 
 export function Header({
@@ -26,7 +27,9 @@ export function Header({
   ctaText,
   ctaHref,
   hideNavigation = false,
+  hasBanner = false,
 }: HeaderProps) {
+  const bannerOffset = hasBanner ? 40 : 0;
   const [isFloating, setIsFloating] = useState(false);
 
   useEffect(() => {
@@ -43,16 +46,18 @@ export function Header({
   }
 
   return (
-    <div className="relative z-40 h-16">
+    <div>
       {/* 
         The header is always fixed + centered. The "flush" vs "floating" look
         is driven entirely by animatable properties (width, top, border-radius,
         scale, shadow, padding) so we never snap between position modes.
       */}
       <header
-        style={
-          isFloating ? { top: "calc(1rem + var(--banner-h, 0px))" } : undefined
-        }
+        style={{
+          top: isFloating
+            ? `calc(1rem + ${bannerOffset}px)`
+            : `${bannerOffset}px`,
+        }}
         className={cn(
           // ── base (always applied) ──
           "fixed left-1/2 z-40 flex h-16 -translate-x-1/2 items-center justify-between gap-4 border bg-(--event-base-bg)/95 backdrop-blur",
@@ -61,16 +66,15 @@ export function Header({
           // ── state fork ──
           isFloating
             ? [
-                // Floating: narrower, rounded, lifted, scaled down slightly, shadow
-                "top-4 w-[calc(100%-1.5rem)] max-w-6xl rounded-[1rem] px-5 sm:px-7",
+                "w-[calc(100%-1.5rem)] max-w-6xl rounded-[1rem] px-5 sm:px-7",
                 "border-(--event-base-text)/15",
                 "shadow-[0_12px_30px_rgba(21,45,59,0.2)]",
                 "scale-100",
-                "md:top-5 md:w-[calc(100%-2.5rem)]",
+                "md:w-[calc(100%-2.5rem)]",
               ]
             : [
                 // Flush: full-width, square corners, no shadow, slightly larger scale
-                "top-0 w-full max-w-none rounded-none px-5 sm:px-7",
+                "w-full max-w-none rounded-none px-5 sm:px-7",
                 "border-transparent border-b-[color:var(--event-base-text)]/15",
                 "shadow-none",
                 "scale-[1.005]",

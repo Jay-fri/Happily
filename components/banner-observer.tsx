@@ -8,7 +8,7 @@ export function BannerObserver() {
     if (!el) return;
 
     const update = () =>
-      document.body.style.setProperty("--banner-h", `${el.offsetHeight}px`);
+      document.documentElement.style.setProperty("--banner-h", `${el.offsetHeight}px`);
 
     update();
     const ro = new ResizeObserver(update);

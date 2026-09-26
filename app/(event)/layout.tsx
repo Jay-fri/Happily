@@ -3,10 +3,8 @@ import type { Metadata } from "next";
 import { DM_Mono, DM_Serif_Display, Space_Grotesk } from "next/font/google";
 import "../globals.css";
 
-import { BannerObserver } from "@/components/banner-observer";
 import { EventShell } from "@/components/event-shell";
 import { styleValue } from "@/components/helpers";
-import { PreviewBanner } from "@/components/preview-banner";
 import { isPreviewRequest, resolveEventEnv } from "@/lib/happily/config";
 import { getPublicEvent } from "@/lib/happily/queries";
 
@@ -78,10 +76,6 @@ export default async function EventLayout({
       className={`${spaceGrotesk.variable} ${dmMono.variable} ${dmSerifDisplay.variable} ${spaceGrotesk.className} h-full antialiased`}
     >
       <body style={eventVars} className="min-h-full flex flex-col">
-        <div id="top-banners">
-          {preview && <PreviewBanner />}
-        </div>
-        <BannerObserver />
         {analyticsId && (
           <script
             defer
@@ -90,7 +84,7 @@ export default async function EventLayout({
             data-website-id={analyticsId}
           />
         )}
-        <EventShell eventData={eventData}>{children}</EventShell>
+        <EventShell eventData={eventData} preview={preview}>{children}</EventShell>
       </body>
     </html>
   );

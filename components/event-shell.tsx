@@ -4,15 +4,17 @@ import type { PublicEventData } from "@/lib/happily/types";
 
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { PreviewBanner } from "./preview-banner";
 import { styleValue, text } from "./helpers";
 import type { NavLinkItem } from "./navbar";
 
 type EventShellProps = {
   eventData: PublicEventData;
   children: ReactNode;
+  preview?: boolean;
 };
 
-export function EventShell({ eventData, children }: EventShellProps) {
+export function EventShell({ eventData, children, preview }: EventShellProps) {
   const { event } = eventData;
   const styles = event.styles;
 
@@ -34,11 +36,13 @@ export function EventShell({ eventData, children }: EventShellProps) {
 
   return (
     <div className="area-z-site flex min-h-screen flex-col bg-(--event-base-bg) text-(--event-base-text)">
+      {preview && <PreviewBanner />}
       <Header
         logo={event.logo_url}
         logoAlt={`${event.name} logo`}
         nav={nav}
         hideNavigation={event.display_settings.hideNavigation ?? false}
+        hasBanner={preview}
         ctaText={
           showCta ? text(buttonLinks!.heroCTA.text, "Register") : undefined
         }
